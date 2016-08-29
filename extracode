@@ -1,0 +1,21 @@
+import { connect } from 'react-redux';
+import { requestBenches } from '../actions/bench_actions';
+import BenchIndex from './bench_index.jsx';
+
+const allBenches = (state) => {
+  return state ? Object.keys(state.benches).map(key => state.benches[key]) : [];
+};
+
+
+const mapStateToProps = state => ({
+  benches: allBenches(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  requestBenches: () => dispatch(requestBenches())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BenchIndex);
